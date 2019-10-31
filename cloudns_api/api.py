@@ -37,6 +37,11 @@ from .config import (
 from .validation import ValidationError
 
 
+def set_auth(auth_id, auth_pass):
+    CLOUDNS_API_AUTH_ID = auth_id
+    CLOUDNS_API_AUTH_PASSWORD = auth_pass
+
+
 def get_auth_params():
     """Returns a dict pre-populated with auth parameters."""
     if not CLOUDNS_API_AUTH_ID:  # pragma: no cover
