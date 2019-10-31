@@ -37,12 +37,16 @@ from .config import (
 from .validation import ValidationError
 
 
-def set_auth(auth_id, auth_pass):
-    CLOUDNS_API_AUTH_ID = auth_id
-    CLOUDNS_API_AUTH_PASSWORD = auth_pass
+CLOUDNS_API_AUTH_ID_OVERWRITE = None
+CLOUDNS_API_AUTH_PASSWORD_OVERWRITE = None
 
 
 def get_auth_params():
+    if CLOUDNS_API_AUTH_ID_OVERWRITE is not None and
+    CLOUDNS_API_AUTH_PASSWORD_OVERWRITE is not None:
+        CLOUDNS_API_AUTH_ID = CLOUDNS_API_AUTH_ID_OVERWRITE
+        CLOUDNS_API_AUTH_PASSWORD = CLOUDNS_API_AUTH_PASSWORD_OVERWRITE
+
     """Returns a dict pre-populated with auth parameters."""
     if not CLOUDNS_API_AUTH_ID:  # pragma: no cover
         raise EnvironmentError(
